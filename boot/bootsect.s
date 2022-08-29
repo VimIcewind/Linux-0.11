@@ -13,7 +13,7 @@
 # iself out of the way to address 0x90000, and jumps there.
 #
 # It then loads 'setup' directly after itself (0x90200), and the system
-# at 0x10000, using BIOS interrupts. 
+# at 0x10000, using BIOS interrupts.
 #
 # NOTE! currently system is at most 8*65536 bytes long. This should be no
 # problem, even in the future. I want to keep it simple. This 512 kB
@@ -52,7 +52,7 @@ _start:
 	mov	$256, %cx
 	sub	%si, %si
 	sub	%di, %di
-	rep	
+	rep
 	movsw
 	ljmp	$INITSEG, $go
 go:	mov	%cs, %ax
@@ -96,7 +96,7 @@ ok_load_setup:
 	mov	$0x03, %ah		# read cursor pos
 	xor	%bh, %bh
 	int	$0x10
-	
+
 	mov	$24, %cx
 	mov	$0x0007, %bx		# page 0, attribute 7 (normal)
 	#lea	msg1, %bp
@@ -158,7 +158,7 @@ die:	jne 	die			# es must be at 64kB boundary
 	xor 	%bx, %bx		# bx is starting address within segment
 rp_read:
 	mov 	%es, %ax
- 	cmp 	$ENDSEG, %ax		# have we loaded all yet?
+	cmp 	$ENDSEG, %ax		# have we loaded all yet?
 	jb	ok1_read
 	ret
 ok1_read:
@@ -183,7 +183,7 @@ ok2_read:
 	mov 	$1, %ax
 	sub 	head, %ax
 	jne 	ok4_read
-	incw    track 
+	incw    track
 ok4_read:
 	mov	%ax, head
 	xor	%ax, %ax
@@ -254,7 +254,7 @@ root_dev:
 	.word ROOT_DEV
 boot_flag:
 	.word 0xAA55
-	
+
 	.text
 	endtext:
 	.data

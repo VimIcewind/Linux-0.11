@@ -29,7 +29,7 @@
 	begbss:
 	.text
 
-	ljmp $SETUPSEG, $_start	
+	ljmp $SETUPSEG, $_start
 _start:
 
 # ok, the read went well so we get current cursor position and save it for
@@ -43,7 +43,7 @@ _start:
 	mov	%dx, %ds:0	# it from 0x90000.
 # Get memory size (extended mem, kB)
 
-	mov	$0x88, %ah 
+	mov	$0x88, %ah
 	int	$0x15
 	mov	%ax, %ds:2
 
@@ -107,7 +107,7 @@ is_disk1:
 
 # now we want to move to protected mode ...
 
-	cli			# no interrupts allowed ! 
+	cli			# no interrupts allowed !
 
 # first we move the system to it's rightful place
 
@@ -194,12 +194,12 @@ end_move:
 # absolute address 0x00000, in 32-bit protected mode.
 	#mov	$0x0001, %ax	# protected mode (PE) bit
 	#lmsw	%ax		# This is it!
-	mov	%cr0, %eax	# get machine status(cr0|MSW)	
-	bts	$0, %eax	# turn on the PE-bit 
+	mov	%cr0, %eax	# get machine status(cr0|MSW)
+	bts	$0, %eax	# turn on the PE-bit
 	mov	%eax, %cr0	# protection enabled
-				
+
 				# segment-descriptor        (INDEX:TI:RPL)
-	.equ	sel_cs0, 0x0008 # select for code segment 0 (  001:0 :00) 
+	.equ	sel_cs0, 0x0008 # select for code segment 0 (  001:0 :00)
 	ljmp	$sel_cs0, $0	# jmp offset 0 of code segment 0 in gdt
 
 # This routine checks that the keyboard command queue is empty
@@ -231,9 +231,9 @@ idt_48:
 
 gdt_48:
 	.word	0x800			# gdt limit=2048, 256 GDT entries
-	.word   512+gdt, 0x9		# gdt base = 0X9xxxx, 
+	.word   512+gdt, 0x9		# gdt base = 0X9xxxx,
 	# 512+gdt is the real gdt after setup is moved to 0x9020 * 0x10
-	
+
 .text
 endtext:
 .data
