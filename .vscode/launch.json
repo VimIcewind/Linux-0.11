@@ -23,7 +23,7 @@
                     "text": "handle all nostop noprint",
                 }
             ],
-           "miDebuggerServerAddress": "localhost:1234",
+           "miDebuggerServerAddress": "172.17.96.1:1234",
         }
     ]
 }
